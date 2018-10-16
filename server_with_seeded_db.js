@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('./server/models/db');
 const app = express();
-const port = 3000;
+const port = 3001; // TODO switch back to 3000
 const seed = require('./server/models/seed/seed-db');
 
 require('./server/middleware/middleware')(app);
@@ -18,9 +18,3 @@ db.sequelize.sync(
             console.log('running server on port ' + port);
         })
     });
-
-db.sequelize.sync().then(() => {
-    app.listen(port, () => {
-        console.log('running server on port ' + port);
-    })
-});

@@ -2,7 +2,6 @@
 
 module.exports = (sequelize, DataTypes) => {
     const Student = sequelize.define('Student', {
-        //timestamps: false,
         name: DataTypes.STRING,
         birth_date: {
             type: DataTypes.DATEONLY,
