@@ -1,0 +1,34 @@
+{
+  "name": "edrans-challenge-api-nodejs",
+  "version": "1.0.0",
+  "description": "Edrans coding challenge - a RESTful API written in Node.js that models majors, subjects, and students at a university and keeps their record",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abekerman-dev/edrans-challenge-api-nodejs.git"
+  },
+  "keywords": [
+    "coding",
+    "challenge",
+    "rest",
+    "api",
+    "node"
+  ],
+  "author": "Andrés Bekerman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abekerman-dev/edrans-challenge-api-nodejs/issues"
+  },
+  "homepage": "https://github.com/abekerman-dev/edrans-challenge-api-nodejs#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "sequelize": "^4.39.0",
+    "sqlite3": "^4.0.2"
+  }
+}

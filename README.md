@@ -1,8 +1,8 @@
 # Node.js REST API Edrans Coding Challenge
 
-This repo consists of a REST API written in Node.js aiming to keep a record of Students, Subjects and Courses of Study at a university.
+This repo consists of a REST API written in Node.js aiming to keep a record of majors, subjects, and students at a university.
 
-A Subject can belong to one or more Courses; a Student signs up for one Course and then signs up for one or more Subjects in that Course. Upon completion of each subject, its state and its associated grade are updated.
+A subject can belong to one or more majors; a student signs up for one major and then signs up for one or more subjects in that major. Upon completion of each subject, its state and its associated term grade are updated.
 
 ## TO-DOs:
 

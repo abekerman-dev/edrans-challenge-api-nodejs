@@ -1,0 +1,14 @@
+[
+	{
+		"name": "Algebra",
+		"credit_hours": 4
+	},
+	{
+		"name": "Physics",
+		"credit_hours": 6
+	},
+	{
+		"name": "Chemistry",
+		"credit_hours": 3
+	}
+]
