@@ -1,4 +1,5 @@
 module.exports = (app) => {
     app.use('/api/students', require('./student/student.routes'));
-    // TODO replicate for majors and subjects
+    app.use('/api/majors', require('./major/major.routes'));
+    // TODO replicate for subjects
 }

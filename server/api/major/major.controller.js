@@ -3,9 +3,9 @@
 const models = require('../../models/db');
 
 exports.findAll = (req, res) => {
-  models.Student.findAll()
-    .then(students => {
-      res.json(students);
+  models.Major.findAll()
+    .then(majors => {
+      res.json(majors);
     })
     .catch(error => {
       console.error(error);
@@ -14,10 +14,10 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  models.Student.findById(req.params.id)
-    .then(student => {
-      if (student) {
-        res.json(student);
+  models.Major.findById(req.params.id)
+    .then(major => {
+      if (major) {
+        res.json(major);
       } else {
         throw {
           error: "input id not found"
@@ -31,9 +31,9 @@ exports.findOne = (req, res) => {
 }
 
 exports.create = (req, res) => {
-  models.Student.create(req.body)
-    .then(user => {
-      res.status(201).json(user);
+  models.Major.create(req.body)
+    .then(major => {
+      res.status(201).json(major);
     })
     .catch(error => {
       console.error(error);
@@ -42,7 +42,7 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-  models.Student.update(
+  models.Major.update(
     req.body,
     { where: { id: req.params.id } }
   )
@@ -62,7 +62,7 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  models.Student.destroy(
+  models.Major.destroy(
     { where: { id: req.params.id } }
   )
     .then(affectedCount => {
