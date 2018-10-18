@@ -10,7 +10,10 @@ const sequelize = new Sequelize('db', 'user', 'pass', {
   host: 'localhost',
   dialect: 'sqlite',
   storage: 'db.sqlite',
-  operatorsAliases: false
+  operatorsAliases: false,
+  define: {
+    timestamps: false
+  }
 });
 
 fs

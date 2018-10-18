@@ -1,14 +1,14 @@
 [
 	{
 		"name": "Algebra",
-		"credit_hours": 4
+		"creditHours": 4
 	},
 	{
 		"name": "Physics",
-		"credit_hours": 6
+		"creditHours": 6
 	},
 	{
 		"name": "Chemistry",
-		"credit_hours": 3
+		"creditHours": 3
 	}
 ]

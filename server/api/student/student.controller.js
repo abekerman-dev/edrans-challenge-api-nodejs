@@ -3,18 +3,20 @@
 const models = require('../../models/db');
 
 exports.findAll = (req, res) => {
-  models.Student.findAll()
-    .then(students => {
-      res.json(students);
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+  models.student.findAll({
+    include: [models.major]
+  })
+  .then(students => {
+    res.json(students);
+  })
+  .catch(error => {
+    console.error(error);
+    res.status(404).send(error);
+  })
 }
 
 exports.findOne = (req, res) => {
-  models.Student.findById(req.params.id)
+  models.student.findById(req.params.id)
     .then(student => {
       if (student) {
         res.json(student);
@@ -31,18 +33,18 @@ exports.findOne = (req, res) => {
 }
 
 exports.create = (req, res) => {
-  models.Student.create(req.body)
-    .then(user => {
-      res.status(201).json(user);
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+  models.student.create(req.body)
+  .then(user => {
+    res.status(201).json(user);
+  })
+  .catch(error => {
+    console.error(error);
+    res.status(404).send(error);
+  })
 }
 
 exports.update = (req, res) => {
-  models.Student.update(
+  models.student.update(
     req.body,
     { where: { id: req.params.id } }
   )
@@ -62,7 +64,7 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  models.Student.destroy(
+  models.student.destroy(
     { where: { id: req.params.id } }
   )
     .then(affectedCount => {

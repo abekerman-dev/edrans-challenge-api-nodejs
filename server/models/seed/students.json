@@ -1,17 +1,17 @@
 [
 	{
 		"name": "John Doe",
-		"birth_date": "1978-10-03",
+		"birthDate": "1978-10-03",
 		"address": "123 Fake St."
 	},
 	{
 		"name": "Susan Adams",
-		"birth_date": "1979-07-27",
+		"birthDate": "1979-07-27",
 		"address": "1234 Lombard St."
 	},
 	{
 		"name": "James Corden",
-		"birth_date": "1987-04-08",
+		"birthDate": "1987-04-08",
 		"address": "12345 Orchard Rd."
 	}
 ]

@@ -3,7 +3,7 @@
 const models = require('../../models/db');
 
 exports.findAll = (req, res) => {
-  models.Subject.findAll()
+  models.subject.findAll()
     .then(subjects => {
       res.json(subjects);
     })
@@ -14,7 +14,7 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  models.Subject.findById(req.params.id)
+  models.subject.findById(req.params.id)
     .then(subject => {
       if (subject) {
         res.json(subject);
@@ -31,7 +31,7 @@ exports.findOne = (req, res) => {
 }
 
 exports.create = (req, res) => {
-  models.Subject.create(req.body)
+  models.subject.create(req.body)
     .then(subject => {
       res.status(201).json(subject);
     })
@@ -42,7 +42,7 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-  models.Subject.update(
+  models.subject.update(
     req.body,
     { where: { id: req.params.id } }
   )
@@ -62,7 +62,7 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  models.Subject.destroy(
+  models.subject.destroy(
     { where: { id: req.params.id } }
   )
     .then(affectedCount => {
