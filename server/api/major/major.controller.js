@@ -7,51 +7,58 @@ exports.findAll = (req, res, next) => {
   models.major.findAll()
     .then(majors => {
       res.json(majors);
-    }).catch(next);
+    })
+    .catch(next);
 }
 
 exports.findOne = (req, res, next) => {
-  models.major.findById(req.params.id)
+  let id = req.params.id;
+  models.major.findById(id)
     .then(major => {
       if (major) {
         res.json(major);
       } else {
-        throw new ResourceNotFoundError("major id not found");
+        throw new ResourceNotFoundError('major', id);
       }
-    }).catch(next);
+    })
+    .catch(next);
 }
 
-exports.create = (req, res) => {
+exports.create = (req, res, next) => {
   models.major.create(req.body)
     .then(major => {
       res.status(201).json(major);
-    }).catch(next);
+    })
+    .catch(next);
 }
 
 exports.update = (req, res, next) => {
+  let id = req.params.id;
   models.major.update(
     req.body,
-    { where: { id: req.params.id } }
+    { where: { id: id } }
   )
     .then(affectedCount => {
-      console.log('affectedCount', affectedCount);
       if (affectedCount[0]) {
         res.sendStatus(204);
       } else {
-        throw new ResourceNotFoundError("major id not found");
+        throw new ResourceNotFoundError('major', id);
       }
-    }).catch(next);
+    })
+    .catch(next);
 }
 
 exports.delete = (req, res, next) => {
+  let id = req.params.id;
   models.major.destroy(
-    { where: { id: req.params.id } }
+    { where: { id: id } }
   )
     .then(affectedCount => {
       if (affectedCount) {
         res.sendStatus(204);
       } else {
-        throw new ResourceNotFoundError("major id not found");
+        throw new ResourceNotFoundError('major', id);
       }
-    }).catch(next);
+    })
+    .catch(next);
 }

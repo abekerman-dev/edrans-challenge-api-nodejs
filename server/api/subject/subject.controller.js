@@ -1,81 +1,63 @@
 'use strict';
 
 const models = require('../../models/db');
+const ResourceNotFoundError = require('../../errors/ResourceNotFoundError');
 
-exports.findAll = (req, res) => {
+exports.findAll = (req, res, next) => {
   models.subject.findAll()
     .then(subjects => {
       res.json(subjects);
     })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+    .catch(next);
 }
 
-exports.findOne = (req, res) => {
+exports.findOne = (req, res, next) => {
   models.subject.findById(req.params.id)
     .then(subject => {
       if (subject) {
         res.json(subject);
       } else {
-        throw {
-          error: "input id not found"
-        };
+        throw new ResourceNotFoundError('subject', id);
       }
     })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+    .catch(next);
 }
 
-exports.create = (req, res) => {
+exports.create = (req, res, next) => {
   models.subject.create(req.body)
     .then(subject => {
       res.status(201).json(subject);
     })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+    .catch(next);
 }
 
-exports.update = (req, res) => {
+exports.update = (req, res, next) => {
+  let id = req.params.id;
   models.subject.update(
     req.body,
-    { where: { id: req.params.id } }
+    { where: { id: id } }
   )
     .then(affectedCount => {
       if (affectedCount[0]) {
         res.sendStatus(204);
       } else {
-        throw {
-          error: "input id not found"
-        };
+        throw new ResourceNotFoundError('subject', id);
       }
     })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+    .catch(next);
 }
 
-exports.delete = (req, res) => {
+exports.delete = (req, res, next) => {
+  let id = req.params.id;
   models.subject.destroy(
-    { where: { id: req.params.id } }
+    { where: { id: id } }
   )
     .then(affectedCount => {
       if (affectedCount) {
         res.sendStatus(204);
       } else {
-        throw {
-          error: "input id not found"
-        };
+        throw new ResourceNotFoundError('subject', id);
       }
     })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+    .catch(next);
 }

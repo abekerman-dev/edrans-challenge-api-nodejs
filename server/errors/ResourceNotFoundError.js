@@ -1,5 +1,5 @@
 module.exports = class ResourceNotFoundError extends require('./AppError') {
-    constructor (message) {
-        super(message, 404);
+    constructor (message, id) {
+        super('Resource ' + message.toUpperCase() + ' with id ' + id + ' not found', 404);
     }
 };
