@@ -11,6 +11,6 @@ db.sequelize.sync({
 	//force: true
 }).then(() => {
 	app.listen(port, () => {
-		console.log('running server on port ' + port + '\n\n\n\n\n');
+		console.log('running server on port ' + port + '\n\n\n\n\n\n\n\n\n\n');
 	})
 });

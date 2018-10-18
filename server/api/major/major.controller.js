@@ -2,6 +2,7 @@
 
 const models = require('../../models/db');
 const ResourceNotFoundError = require('../../errors/ResourceNotFoundError');
+const BadRequestError = require('../../errors/BadRequestError');
 
 exports.findAll = (req, res, next) => {
   models.major.findAll()
@@ -61,4 +62,36 @@ exports.delete = (req, res, next) => {
       }
     })
     .catch(next);
+}
+
+exports.addSubject = (req, res, next) => {
+    let majorId = req.params.id;
+    let subjectId = req.params.subjectId;
+    models.major.findById(majorId)
+      .then(major => {
+        if (!major) {
+          throw new ResourceNotFoundError('major', majorId);
+        } else {
+          models.subject.findById(subjectId)
+            .then(subject => {
+              if (!subject) {
+                throw new ResourceNotFoundError('subject', subjectId);
+              } else {
+                major.addSubject(subjectId)
+                  .then(() => {
+                    res.sendStatus(204);
+                  })
+                  .catch((err) => {
+                    res
+                      .status(400)
+                      .send(
+                        { error: 'entry for (major, subject) already exists in join table' }
+                      );
+                  });
+              }
+            })
+            .catch(next);
+        }
+      })
+      .catch(next);
 }

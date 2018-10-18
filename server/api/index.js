@@ -8,7 +8,7 @@ module.exports = (app) => {
     });
 
 	app.use(function(err, req, res, next) {
-		console.error('an error has occurred:', err.status, err.message);
-		return res.status(err.status).send({ error: err.message });
+		console.error('server error has occurred:', err.status, err.message);
+		return res.status(err.status || 500).send({ error: err.message });
 	});
 }
