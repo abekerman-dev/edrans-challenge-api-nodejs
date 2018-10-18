@@ -2,7 +2,6 @@
 
 const models = require('../../models/db');
 const ResourceNotFoundError = require('../../errors/ResourceNotFoundError');
-const BadRequestError = require('../../errors/BadRequestError');
 
 exports.findAll = (req, res, next) => {
   models.major.findAll()
