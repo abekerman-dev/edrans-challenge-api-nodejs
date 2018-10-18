@@ -1,67 +1,49 @@
 'use strict';
 
 const models = require('../../models/db');
+const ResourceNotFoundError = require('../../errors/ResourceNotFoundError');
 
-exports.findAll = (req, res) => {
+exports.findAll = (req, res, next) => {
   models.major.findAll()
     .then(majors => {
       res.json(majors);
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+    }).catch(next);
 }
 
-exports.findOne = (req, res) => {
+exports.findOne = (req, res, next) => {
   models.major.findById(req.params.id)
     .then(major => {
       if (major) {
         res.json(major);
       } else {
-        throw {
-          error: "input id not found"
-        };
+        throw new ResourceNotFoundError("major id not found");
       }
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+    }).catch(next);
 }
 
 exports.create = (req, res) => {
   models.major.create(req.body)
     .then(major => {
       res.status(201).json(major);
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+    }).catch(next);
 }
 
-exports.update = (req, res) => {
+exports.update = (req, res, next) => {
   models.major.update(
     req.body,
     { where: { id: req.params.id } }
   )
     .then(affectedCount => {
+      console.log('affectedCount', affectedCount);
       if (affectedCount[0]) {
         res.sendStatus(204);
       } else {
-        throw {
-          error: "input id not found"
-        };
+        throw new ResourceNotFoundError("major id not found");
       }
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+    }).catch(next);
 }
 
-exports.delete = (req, res) => {
+exports.delete = (req, res, next) => {
   models.major.destroy(
     { where: { id: req.params.id } }
   )
@@ -69,13 +51,7 @@ exports.delete = (req, res) => {
       if (affectedCount) {
         res.sendStatus(204);
       } else {
-        throw {
-          error: "input id not found"
-        };
+        throw new ResourceNotFoundError("major id not found");
       }
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(404).send(error);
-    })
+    }).catch(next);
 }
