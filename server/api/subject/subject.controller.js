@@ -67,3 +67,7 @@ exports.delete = (req, res, next) => {
     })
     .catch(next);
 }
+
+exports.finishTerm = (req, res, next) => {
+  res.sendStatus(501);
+}
