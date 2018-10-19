@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 	Subject.associate = (models) => {
         models.subject.belongsToMany(models.student, 
         	{   
+        		as: 'Students',
 		        through: 'student_subject',
 		        foreignKey: 'subject_id'
 		    }
@@ -19,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
 
         models.subject.belongsToMany(models.major, 
 	    	{ 	
+	    		as: 'Majors',
         		through: 'subject_major',
         		foreignKey: 'subject_id'
         	}

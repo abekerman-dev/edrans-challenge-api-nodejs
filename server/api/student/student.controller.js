@@ -5,18 +5,20 @@ const ResourceNotFoundError = require('../../errors/ResourceNotFoundError');
 const BadRequestError = require('../../errors/BadRequestError');
 
 exports.findAll = (req, res, next) => {
-  models.student.findAll({
-    include: [models.major]
-  })
-  .then(students => {
-    res.json(students);
-  })
-  .catch(next);
+  models.student.findAll({ include: [ models.major ] })
+    .then(students => {
+      res.json(students);
+    })
+    .catch(next);
 }
 
 exports.findById = (req, res, next) => {
   let id = req.params.id;
-  models.student.findById(id)
+  models.student.findById(id, {
+    include: [
+      { model: models.subject, as: 'Subjects' }
+    ]
+  })
     .then(student => {
       if (student) {
         res.json(student);

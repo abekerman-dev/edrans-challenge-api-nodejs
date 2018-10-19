@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     Major.associate = (models) => {
         models.major.belongsToMany(models.subject, 
 	    	{ 	
+                as: 'Subjects',
         		through: 'subject_major',
 	    		foreignKey: 'major_id'
         	}

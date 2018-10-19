@@ -12,7 +12,13 @@ exports.findAll = (req, res, next) => {
 }
 
 exports.findById = (req, res, next) => {
-  models.subject.findById(req.params.id)
+  let id = req.params.id;
+  models.subject.findById(id, {
+    include: [
+      { model: models.major, as: 'Majors' },
+      { model: models.student, as: 'Students' }
+    ]
+  })
     .then(subject => {
       if (subject) {
         res.json(subject);
