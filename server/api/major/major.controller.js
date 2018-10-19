@@ -11,7 +11,7 @@ exports.findAll = (req, res, next) => {
     .catch(next);
 }
 
-exports.findOne = (req, res, next) => {
+exports.findById = (req, res, next) => {
   let id = req.params.id;
   models.major.findById(id)
     .then(major => {
@@ -85,8 +85,8 @@ exports.addSubject = (req, res, next) => {
                       .status(400)
                       .send(
                         { error: 'entry for (major, subject) already exists in join table' }
-                      );
-                  });
+                      )
+                  })
               }
             })
             .catch(next);

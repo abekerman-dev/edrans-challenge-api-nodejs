@@ -11,7 +11,7 @@ exports.findAll = (req, res, next) => {
     .catch(next);
 }
 
-exports.findOne = (req, res, next) => {
+exports.findById = (req, res, next) => {
   models.subject.findById(req.params.id)
     .then(subject => {
       if (subject) {
