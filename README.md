@@ -1,4 +1,4 @@
-# Node.js REST API Edrans Coding Challenge
+# Node.js REST API Coding Challenge
 
 This repo consists of a REST API written in Node.js aiming to keep a record of majors, subjects, and students at a university.
 
